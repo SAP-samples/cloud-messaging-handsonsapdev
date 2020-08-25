@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# MANAGEMENT - set up queue (and list queues)
+
+
+instance=emdev
+servicekey=sk1
+
+queue=handson
+
+output=silent # or verbose
+
+source ./localutils # getservicekey getval gettoken
+
+# Retrieve service key and parse out relevant sections.
+sk=$(getservicekey "${instance}" "${servicekey}")
+
+
+# MANAGEMENT CALLS - create and list queue(s)
+
+# Determine API call details for MANAGEMENT incl OAuth 2.0 token
+management=$(getval "${sk}" .management[0])
+uri=$(getval "${management}" .uri)
+oauth=$(getval "${management}" .oa2)
+token=$(gettoken "${oauth}")
+
+log Creating / updating queue
+curl \
+  --${output} \
+  --header "Authorization: Bearer ${token}" \
+  --request PUT \
+  "${uri}/hub/rest/api/v1/management/messaging/queues/${queue}" \
+| jq .
+
+log Listing all queues
+curl \
+  --${output} \
+  --header "Authorization: Bearer ${token}" \
+  --request GET \
+  "${uri}/hub/rest/api/v1/management/messaging/queues" \
+| jq .
+
+

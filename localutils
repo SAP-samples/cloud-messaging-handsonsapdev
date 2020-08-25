@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# Local utilities for use in various other scripts
+
+output=${output:-silent}
+
+log () {
+  echo $(date '+%Y-%m-%d %H:%M:%S') $@
+}
+
+getval () {
+  echo "${1}" | jq -r "${2}"
+}
+
+gettoken () {
+  # Produces an OAuth 2.0 access token from a JSON OAuth 2.0 info stanza
+  # that looks like this:
+  # {
+  #   "clientid": "...",
+  #   "clientsecret": "...",
+  #   "granttype": "...",
+  #   "tokenendpoint": "..."
+  # }
+  local stanza=${1}
+  local clientid clientsecret granttype tokenendpoint
+
+  clientid=$(getval "${stanza}" .clientid)
+  clientsecret=$(getval "${stanza}" .clientsecret)
+  granttype=$(getval "${stanza}" .granttype)
+  tokenendpoint=$(getval "${stanza}" .tokenendpoint)
+
+  # This is basically assuming the use of the OAuth 2.0
+  # Client Credentials grant type.
+  token=$(
+    curl \
+      --"${output}" \
+      --user "${clientid}:${clientsecret}" \
+      --data "grant_type=${granttype}" \
+      "${tokenendpoint}" \
+    | jq -r '.access_token'
+  )
+  echo "${token}"
+}
+
+# For a given service instance, returns the information
+# in a service key, specified by name. Very basic cacheing
+# in that if there's a file <instancename>-<servicekey>.json
+# the information in there will be used; otherwise it will
+# be retrieved from the cloud platform.
+getservicekey () {
+  local instance=${1}
+  local servicekey=${2}
+  local file
+  file="${instance}-${servicekey}.json"
+  if [ -r "${file}" ]; then
+    cat "${file}"
+  else
+    # Note we have to clean up the output of cf service-key
+    # because it emits non-valid JSON in the first 2 lines.
+    cf service-key "${instance}" "${servicekey}" | sed '1,2d'
+  fi
+}
+
+
+
+
+
