@@ -3,7 +3,7 @@
 ## Description
 
 For the host and participants of the [Hands-on SAP Dev](https://www.youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0) live stream show to share discoveries & scripting efforts in the collective dive into messaging on SAP Cloud Platform - specifically in the
-[Diving into messaging on SAP Cloud Platform](https://www.youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0) series.
+[Diving into messaging on SAP Cloud Platform](https://www.youtube.com/playlist?list=PL6RpkC85SLQCf--P9o7DtfjEcucimapUf) series.
 
 ## Download and installation
 
