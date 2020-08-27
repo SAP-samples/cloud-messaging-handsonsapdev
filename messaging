@@ -69,7 +69,33 @@ create_webhook_subscription () {
     "${uri}${basepath}/subscriptions"
 }
 
-create_webhook_subscription webhook1 handson "https://webhook-shiny-mongoose-ky.cfapps.eu10.hana.ondemand.com/webhook1"
 
+# MAIN ----------------------------------------------------------------------
+
+# All the possible core functions
+
+functions=$(cat <<EO_FUNCTIONS
 list_webhook_subscriptions
+create_webhook_subscription
+EO_FUNCTIONS
+)
+
+command=$1
+
+# Either we're being asked to list the functions (for bash completion)
+# or a function is being invoked.
+case $command in
+  completion|"")
+    echo "$functions"
+    ;;
+  *)
+    # TODO make this check more accurate
+    if [[ ! "$functions" =~ $command ]]; then
+      err Command \""$command"\" is not recognised
+      exit 1
+    fi
+    shift
+    echo "$command" "$@"
+    ;;
+esac
 
