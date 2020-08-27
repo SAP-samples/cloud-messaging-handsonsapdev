@@ -51,7 +51,7 @@ getservicekey () {
   local instance=${1}
   local servicekey=${2}
   local file
-  file="${instance}-${servicekey}.json"
+  file="sk-${instance}-${servicekey}.json"
   if [ -r "${file}" ]; then
     cat "${file}"
   else
