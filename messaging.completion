@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Create a symbolic link to this file, thus:
+# /usr/local/etc/bash.completion.d/messaging -> messaging.completion
+
+_messaging()
+{
+    local cur list
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+
+    list="$("$PWD/messaging")"
+
+    COMPREPLY=( $(compgen -W "${list}" -- "${cur}") )
+    return 0
+}
+
+complete -F _messaging messaging
