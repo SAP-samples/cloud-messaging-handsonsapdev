@@ -95,7 +95,7 @@ case $command in
       exit 1
     fi
     shift
-    echo "$command" "$@"
+    $command "$@"
     ;;
 esac
 
