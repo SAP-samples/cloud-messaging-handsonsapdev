@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Get messaging dashboard URL from the service info and open it. This is
+# what we did in Part 2 of the series, specifically here:
+# https://www.youtube.com/watch?v=Ct-uiu3RRZs&list=PL6RpkC85SLQCf--P9o7DtfjEcucimapUf&index=3&t=1990s
+
+instance=emdev
+
+# Get the details of the service instance, pull out the dashboard URL
+# and then pass that URL to 'open'
+cf service "${instance}" \
+  | awk '/^dashboard:/ { print $2 }' \
+  | xargs open
