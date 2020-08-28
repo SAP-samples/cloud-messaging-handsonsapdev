@@ -14,16 +14,6 @@ output=silent # or verbose
 
 source ./localutils # getservicekey getval gettoken
 
-# Retrieve service key and parse out relevant sections.
-sk=$(getservicekey "${instance}" "${servicekey}")
-
-# Determine API call details for MESSAGING-HTTPREST incl OAuth 2.0 token
-messaging=$(getval "${sk}" .messaging)
-httprest=$(getval "${messaging}" '.[] | select(.broker.type == "saprestmgw")')
-uri=$(getval "${httprest}" .uri)
-oauth=$(getval "${httprest}" .oa2)
-token=$(gettoken "${oauth}")
-
 
 # Payload builders ----------------------------------------------------------
 
@@ -95,6 +85,18 @@ case $command in
       exit 1
     fi
     shift
+
+    # Retrieve service key and parse out relevant sections.
+    sk=$(getservicekey "${instance}" "${servicekey}")
+
+    # Determine API call details for MESSAGING-HTTPREST incl OAuth 2.0 token
+    messaging=$(getval "${sk}" .messaging)
+    httprest=$(getval "${messaging}" '.[] | select(.broker.type == "saprestmgw")')
+    uri=$(getval "${httprest}" .uri)
+    oauth=$(getval "${httprest}" .oa2)
+    token=$(gettoken "${oauth}")
+
+    # Now we can run the requested command
     $command "$@"
     ;;
 esac
