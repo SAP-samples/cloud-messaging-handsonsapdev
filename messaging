@@ -88,8 +88,8 @@ publish_message_to_queue () {
     err Usage: publish_message_to_queue name message
     exit 1
   fi
-  log "Publish message to queue ${target}"
-  _publish_message queues "${queue}" "${message}"
+  log "Publish message to queue $queue"
+  _publish_message queues "$queue" "$message"
 }
 
 publish_message_to_topic () {
