@@ -59,6 +59,10 @@ create_webhook_subscription () {
   local queue=${2}
   local endpoint=${3}
   local payload
+  if [[ -z "$name" ]] || [[ -z "$queue" ]] || [[ -z "$endpoint" ]]; then
+    err Usage: create_webhook_subscription name queue endpoint
+    exit 1
+  fi
   payload=$(build_payload_webhook_subscription "${name}" "${queue}" "${endpoint}")
   curl \
     --${output} \
@@ -69,12 +73,39 @@ create_webhook_subscription () {
     "${uri}${basepath}/subscriptions"
 }
 
+_publish_message () {
+  local targettype=${1}
+  local target=${2}
+  local message=${3}
+  curl \
+    --"${output}" \
+    --header "Authorization: Bearer ${token}" \
+    --header 'x-qos: 0' \
+    --header 'Content-Type: application/json' \
+    --request POST \
+    --data "${message}" \
+    "${uri}${basepath}/${targettype}/${target}/messages"
+}
+
+publish_message_to_queue () {
+  local queue=${1}
+  local message=${2}
+  if [[ -z "$queue" ]] || [[ -z "$message" ]]; then
+    err Usage: publish_message_to_queue name message
+    exit 1
+  fi
+  log "Publish message to queue ${target}"
+  _publish_message queues "${queue}" "${message}"
+}
+
+
 
 # MAIN ----------------------------------------------------------------------
 
 # All the possible core functions
 
 functions=$(cat <<EO_FUNCTIONS
+publish_message_to_queue
 list_webhook_subscriptions
 create_webhook_subscription
 EO_FUNCTIONS
