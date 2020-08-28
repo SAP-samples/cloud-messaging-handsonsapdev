@@ -92,6 +92,18 @@ publish_message_to_queue () {
   _publish_message queues "${queue}" "${message}"
 }
 
+publish_message_to_topic () {
+  local topic=${1}
+  local message=${2}
+  if [[ -z "$topic" ]] || [[ -z "$message" ]]; then
+    err Usage: publish_message_to_topic name message
+    exit 1
+  fi
+  log "Publish message to topic $topic"
+  _publish_message topics "$topic" "$message"
+}
+
+
 
 
 # MAIN ----------------------------------------------------------------------
@@ -99,6 +111,7 @@ publish_message_to_queue () {
 # All the possible core functions
 
 functions=$(cat <<EO_FUNCTIONS
+publish_message_to_topic
 publish_message_to_queue
 list_webhook_subscriptions
 create_webhook_subscription
