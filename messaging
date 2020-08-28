@@ -48,6 +48,10 @@ create_webhook_subscription () {
   local name=${1}
   local queue=${2}
   local endpoint=${3}
+  if [[ -z "$name" ]] || [[ -z "$queue" ]] || [[ -z "$endpoint" ]]; then
+    err Usage: create_webhook_subscription name queue endpoint
+    exit 1
+  fi
   local payload
   payload=$(build_payload_webhook_subscription "${name}" "${queue}" "${endpoint}")
   curl \
