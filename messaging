@@ -42,6 +42,19 @@ list_webhook_subscriptions () {
     "${uri}${basepath}/subscriptions" | jq .
 }
 
+get_webhook_subscription () {
+  local name=$1
+  if [[ -z "$name" ]]; then
+    err Usage: get_webhook_subscription name
+    exit 1
+  fi
+  curl \
+    --${output} \
+    --header "Authorization: Bearer $token" \
+    --request GET \
+    "$uri/$basepath/subscriptions/$name"
+}
+
 create_webhook_subscription () {
   local name=${1}
   local queue=${2}
@@ -114,7 +127,35 @@ publish_message_to_topic () {
   _publish_message topics "$topic" "$message"
 }
 
+consume_message_from_queue () {
+  local name=$1
+  if [[ -z "$name" ]]; then
+    err Usage: consume_message_from_queue name
+    exit 1
+  fi
+  log "Consume message from queue $queue"
+  curl \
+    --$output \
+    --header "Authorization: Bearer $token" \
+    --header "x-qos: 0" \
+    --request POST \
+    "$uri/$basepath/queues/$name/messages/consumption"
+}
 
+acknowledge_message_consumption () {
+  local name=$1
+  local messageid=$2
+  if [[ -z "$name" ]] || [[ -z "$messageid" ]]; then
+    err Usage: acknowledge_message_consumption name messageid
+    exit 1
+  fi
+  log "Acknowledge consumption of message $messageid from queue $queue"
+  curl \
+    --$output \
+    --header "Authorization: Bearer $token" \
+    --request POST \
+    "$uri/$basepath/queues/$name/messages/$messageid/acknowledgement"
+}
 
 
 # MAIN ----------------------------------------------------------------------
@@ -125,8 +166,11 @@ functions=$(cat <<EO_FUNCTIONS
 publish_message_to_topic
 publish_message_to_queue
 list_webhook_subscriptions
+get_webhook_subscription
 create_webhook_subscription
 delete_webhook_subscription
+consume_message_from_queue
+acknowledge_message_consumption
 EO_FUNCTIONS
 )
 
