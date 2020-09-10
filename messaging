@@ -67,6 +67,19 @@ create_webhook_subscription () {
     "${uri}${basepath}/subscriptions"
 }
 
+delete_webhook_subscription () {
+  local name=$1
+  if [[ -z "$name" ]]; then
+    err Usage: delete_webhook_subscription name
+    exit 1
+  fi
+  curl \
+    --${output} \
+    --header "Authorization: Bearer $token" \
+    --request DELETE \
+    "$uri/$basepath/subscriptions/$name"
+}
+
 _publish_message () {
   local targettype=${1}
   local target=${2}
@@ -115,6 +128,7 @@ publish_message_to_topic
 publish_message_to_queue
 list_webhook_subscriptions
 create_webhook_subscription
+delete_webhook_subscription
 EO_FUNCTIONS
 )
 
