@@ -98,6 +98,19 @@ function create_update_queue_subscription () {
   | jq .
 }
 
+function delete_queue_subscription () {
+  local queue=$1
+  local topic=$2
+  if [[ -z "$queue" ]] || [[ -z "$topic" ]]; then
+    err Usage: delete_queue_subscription queue topic
+    exit 1
+  fi
+  curl \
+    --$output \
+    --header "Authorization: Bearer $token" \
+    --request DELETE \
+    "$uri/$basepath/queues/$queue/subscriptions/$topic"
+}
 
 # MAIN ---------------------------------------------------------------------------
 
@@ -109,6 +122,7 @@ get_queue
 list_queues
 list_queue_subscriptions
 create_update_queue_subscription
+delete_queue_subscription
 EO_FUNCTIONS
 )
 
