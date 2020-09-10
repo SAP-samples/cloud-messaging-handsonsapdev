@@ -39,7 +39,6 @@ list_webhook_subscriptions () {
   curl \
     --${output} \
     --header "Authorization: Bearer ${token}" \
-    --header 'Content-Type: application/json' \
     --request GET \
     "${uri}${basepath}/subscriptions" | jq .
 }
@@ -88,7 +87,7 @@ _publish_message () {
     --"${output}" \
     --header "Authorization: Bearer ${token}" \
     --header 'x-qos: 0' \
-    --header 'Content-Type: application/json' \
+    --header 'Content-Type: text/plain' \
     --request POST \
     --data "${message}" \
     "${uri}${basepath}/${targettype}/${target}/messages"
