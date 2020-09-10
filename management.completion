@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Create a symbolic link to this file, thus:
+# /usr/local/etc/bash.completion.d/management -> management.completion
+
+_management()
+{
+    local cur list
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+
+    list="$("$PWD/management")"
+
+    COMPREPLY=( $(compgen -W "${list}" -- "${cur}") )
+    return 0
+}
+
+complete -F _management management
