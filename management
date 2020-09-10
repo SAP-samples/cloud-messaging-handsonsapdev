@@ -32,6 +32,31 @@ function create_update_queue () {
   | jq .
 }
 
+function delete_queue () {
+  local queue=$1
+  if [[ -z "$queue" ]]; then
+    err Usage: delete_queue queue
+  fi
+  curl \
+    --${output} \
+    --header "Authorization: Bearer ${token}" \
+    --request DELETE \
+    "$uri/$basepath/queues/${queue}"
+}
+
+function get_queue () {
+  local queue=$1
+  if [[ -z "$queue" ]]; then
+    err Usage: get_queue queue
+  fi
+  curl \
+    --${output} \
+    --header "Authorization: Bearer ${token}" \
+    --request GET \
+    "$uri/$basepath/queues/${queue}" \
+  | jq .
+}
+
 function list_queues () {
   curl \
     --${output} \
@@ -41,13 +66,44 @@ function list_queues () {
   | jq .
 }
 
+function list_queue_subscriptions () {
+  local queue=$1
+  if [[ -z "$queue" ]]; then
+    err Usage: list_queue_subscriptions queue
+  fi
+  curl \
+    --${output} \
+    --header "Authorization: Bearer ${token}" \
+    --request GET \
+    "$uri/$basepath/queues/${queue}/subscriptions" \
+  | jq .
+}
+
+function create_update_queue_subscription () {
+  local queue=$1
+  local topic=$2
+  if [[ -z "$queue" ]] || [[ -z "$topic" ]]; then
+    err Usage: create_update_queue_subscription queue topic
+  fi
+  curl \
+    --${output} \
+    --header "Authorization: Bearer ${token}" \
+    --request PUT \
+    "$uri/$basepath/queues/${queue}/subscriptions/$topic" \
+  | jq .
+}
+
 
 # MAIN ---------------------------------------------------------------------------
 
 # All the possible core functions
 functions=$(cat <<EO_FUNCTIONS
 create_update_queue
+delete_queue
+get_queue
 list_queues
+list_queue_subscriptions
+create_update_queue_subscription
 EO_FUNCTIONS
 )
 
