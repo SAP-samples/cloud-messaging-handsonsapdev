@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# MANAGEMENT - set up queue (and list queues)
+# MANAGEMENT CLIENT
 
 basepath=hub/rest/api/v1/management/messaging
 
@@ -17,28 +17,64 @@ source ./localutils # getservicekey getval gettoken
 sk=$(getservicekey "${instance}" "${servicekey}")
 
 
-# MANAGEMENT CALLS - create and list queue(s)
+# Main functions -----------------------------------------------------------------
 
-# Determine API call details for MANAGEMENT incl OAuth 2.0 token
-management=$(getval "${sk}" .management[0])
-uri=$(getval "${management}" .uri)
-oauth=$(getval "${management}" .oa2)
-token=$(gettoken "${oauth}")
+function create_update_queue () {
+  local queue=$1
+  if [[ -z "$queue" ]]; then
+    err Usage: create_update_queue queue
+  fi
+  curl \
+    --${output} \
+    --header "Authorization: Bearer ${token}" \
+    --request PUT \
+    "${uri}/hub/rest/api/v1/management/messaging/queues/${queue}" \
+  | jq .
+}
 
-log Creating / updating queue
-curl \
-  --${output} \
-  --header "Authorization: Bearer ${token}" \
-  --request PUT \
-  "${uri}/hub/rest/api/v1/management/messaging/queues/${queue}" \
-| jq .
-
-log Listing all queues
-curl \
-  --${output} \
-  --header "Authorization: Bearer ${token}" \
-  --request GET \
-  "${uri}/hub/rest/api/v1/management/messaging/queues" \
-| jq .
+function list_queues () {
+  curl \
+    --${output} \
+    --header "Authorization: Bearer ${token}" \
+    --request GET \
+    "${uri}/hub/rest/api/v1/management/messaging/queues" \
+  | jq .
+}
 
 
+# MAIN ---------------------------------------------------------------------------
+
+# All the possible core functions
+functions=$(cat <<EO_FUNCTIONS
+create_update_queue
+list_queues
+EO_FUNCTIONS
+)
+
+command=$1
+
+# Either we're being asked to list the functions (for bash completion)
+# or a function is being invoked.
+case $command in
+  completion|"")
+    echo "$functions"
+    ;;
+  *)
+    if [[ ! "$functions" =~ $command ]]; then
+      err Command \""$command"\" is not recognised
+      exit 1
+    fi
+    shift
+
+    # Retrieve service key and parse out relevant sections
+    management=$(getval "${sk}" .management[0])
+
+    # Determine API call details for MANAGEMENT incl OAuth 2.0 token
+    uri=$(getval "${management}" .uri)
+    oauth=$(getval "${management}" .oa2)
+    token=$(gettoken "${oauth}")
+
+    # Now we can run the requested command
+    $command "$@"
+    ;;
+esac
