@@ -28,7 +28,7 @@ function create_update_queue () {
     --${output} \
     --header "Authorization: Bearer ${token}" \
     --request PUT \
-    "${uri}/hub/rest/api/v1/management/messaging/queues/${queue}" \
+    "$uri/$basepath/queues/${queue}" \
   | jq .
 }
 
@@ -37,7 +37,7 @@ function list_queues () {
     --${output} \
     --header "Authorization: Bearer ${token}" \
     --request GET \
-    "${uri}/hub/rest/api/v1/management/messaging/queues" \
+    "$uri/$basepath/queues" \
   | jq .
 }
 
