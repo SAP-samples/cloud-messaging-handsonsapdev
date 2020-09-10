@@ -23,6 +23,7 @@ function create_update_queue () {
   local queue=$1
   if [[ -z "$queue" ]]; then
     err Usage: create_update_queue queue
+    exit 1
   fi
   curl \
     --${output} \
@@ -36,6 +37,7 @@ function delete_queue () {
   local queue=$1
   if [[ -z "$queue" ]]; then
     err Usage: delete_queue queue
+    exit 1
   fi
   curl \
     --${output} \
@@ -48,6 +50,7 @@ function get_queue () {
   local queue=$1
   if [[ -z "$queue" ]]; then
     err Usage: get_queue queue
+    exit 1
   fi
   curl \
     --${output} \
@@ -70,6 +73,7 @@ function list_queue_subscriptions () {
   local queue=$1
   if [[ -z "$queue" ]]; then
     err Usage: list_queue_subscriptions queue
+    exit 1
   fi
   curl \
     --${output} \
@@ -84,6 +88,7 @@ function create_update_queue_subscription () {
   local topic=$2
   if [[ -z "$queue" ]] || [[ -z "$topic" ]]; then
     err Usage: create_update_queue_subscription queue topic
+    exit 1
   fi
   curl \
     --${output} \
