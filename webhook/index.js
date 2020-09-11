@@ -10,7 +10,7 @@ const app = express()
 const PORT = process.env.PORT || 8080
 
 // Tell express to use body-parser's JSON parsing
-app.use(bodyParser.json())
+app.use(bodyParser.text({type: '*/*'}))
 
 // Basically accept GET requests to any path, logging
 // what the path was.
