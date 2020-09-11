@@ -13,9 +13,6 @@ output=silent # or verbose
 
 source ./localutils # getservicekey getval gettoken
 
-# Retrieve service key and parse out relevant sections.
-sk=$(getservicekey "$instance" "$servicekey")
-
 
 # Main functions -----------------------------------------------------------------
 
@@ -142,6 +139,7 @@ case $command in
     shift
 
     # Retrieve service key and parse out relevant sections
+    sk=$(getservicekey "$instance" "$servicekey")
     management=$(getval "$sk" .management[0])
 
     # Determine API call details for MANAGEMENT incl OAuth 2.0 token
