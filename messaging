@@ -8,6 +8,7 @@ instance=emdev
 servicekey=sk1
 
 queue=handson
+qos=1
 
 output=silent # or verbose
 
@@ -23,7 +24,7 @@ build_payload_webhook_subscription () {
   yq r -j - <<EO_WEBHOOK_SUBSCRIPTION
 name: "$name"
 address: "queue:$queue"
-qos: 0
+qos: $qos
 pushConfig:
   type: webhook
   endpoint: "$endpoint"
@@ -98,7 +99,7 @@ _publish_message () {
   curl \
     --"$output" \
     --header "Authorization: Bearer $token" \
-    --header 'x-qos: 0' \
+    --header "x-qos: $qos" \
     --header 'Content-Type: text/plain' \
     --request POST \
     --data "$message" \
@@ -137,7 +138,7 @@ consume_message_from_queue () {
   curl \
     --$output \
     --header "Authorization: Bearer $token" \
-    --header "x-qos: 0" \
+    --header "x-qos: $qos" \
     --request POST \
     "$uri/$basepath/queues/$name/messages/consumption"
 }
