@@ -53,7 +53,7 @@ gettoken () {
 getservicekey () {
   local instance=${1}
   local servicekey=${2}
-  local cachetime="+1" # mins
+  local cachetime="+5" # mins
   local file="sk-$instance-$servicekey.json"
 
   # If the file doesn't exist, or is older than N mins,
