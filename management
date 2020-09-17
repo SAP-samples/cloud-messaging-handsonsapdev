@@ -7,8 +7,6 @@ basepath=hub/rest/api/v1/management/messaging
 instance=emdev
 servicekey=sk1
 
-queue=handson
-
 output=silent # or verbose
 
 source ./localutils # getservicekey getval gettoken

@@ -7,7 +7,6 @@ basepath=messagingrest/v1
 instance=emdev
 servicekey=sk1
 
-queue=handson
 qos=1
 
 output=silent # silent or verbose
