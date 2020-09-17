@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o errexit
+
 # MANAGEMENT CLIENT
 
 basepath=hub/rest/api/v1/management/messaging

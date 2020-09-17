@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o errexit
+
 # Set up messaging service instance and service key
 # Sort of idempotent - can rerun if required.
 
