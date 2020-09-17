@@ -47,22 +47,22 @@ gettoken () {
 }
 
 # For a given service instance, returns the information
-# in a service key, specified by name. Very basic cacheing
-# in that if there's a file <instancename>-<servicekey>.json
-# the information in there will be used; otherwise it will
-# be retrieved from the cloud platform.
+# in a service key, specified by name. Basic cacheing
+# in that key data is regenerated from the cloud platform
+# and cached for N mins in a local file.
 getservicekey () {
   local instance=${1}
   local servicekey=${2}
-  local file
-  file="sk-${instance}-${servicekey}.json"
-  if [ -r "${file}" ]; then
-    cat "${file}"
-  else
-    # Note we have to clean up the output of cf service-key
-    # because it emits non-valid JSON in the first 2 lines.
-    cf service-key "${instance}" "${servicekey}" | sed '1,2d'
+  local cachetime="+1" # mins
+  local file="sk-$instance-$servicekey.json"
+
+  # If the file doesn't exist, or is older than N mins,
+  # then we need to (re)refresh from the cloud.
+  if [ ! -f "$file" ] || test "$(find "$file" -mmin $cachetime)"; then
+    cf service-key "${instance}" "${servicekey}" | sed '1,2d' > "$file"
   fi
+
+  cat "$file"
 }
 
 
