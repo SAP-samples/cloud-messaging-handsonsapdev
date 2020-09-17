@@ -4,11 +4,9 @@
 
 basepath=hub/rest/api/v1/management/messaging
 
-instance=emdev
-servicekey=sk1
-
 output=silent # or verbose
 
+source ./settings
 source ./localutils # getservicekey getval gettoken
 
 

@@ -4,13 +4,11 @@
 
 basepath=messagingrest/v1
 
-instance=emdev
-servicekey=sk1
-
 qos=1
 
 output=silent # silent or verbose
 
+source ./settings
 source ./localutils # getservicekey getval gettoken
 
 
