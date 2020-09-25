@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cf app "$1" 2>/dev/null  | awk '/^routes:/ { print "https://"$2 }'
