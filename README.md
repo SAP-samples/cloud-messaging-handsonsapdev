@@ -1,5 +1,7 @@
 # Cloud - Messaging - Hands-on SAP Dev
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-messaging-handsonsapdev)](https://api.reuse.software/info/github.com/SAP-samples/cloud-messaging-handsonsapdev)
+
 ## Description
 
 For the host and participants of the [Hands-on SAP Dev](https://www.youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0) live stream show to share discoveries & scripting efforts in the collective dive into messaging on SAP Cloud Platform - specifically in the
