@@ -7,7 +7,7 @@ For the host and participants of the [Hands-on SAP Dev](https://www.youtube.com/
 
 ## Requirements
 
-The scripts in this repo are Bash shell scripts. Therefore, to try these scripts out yourself, you'll need a Bash shell, which is available on macOS, Linux and Windows (with the Windows Subsystem for Linux). You will need some basic tools which are also available everywhere, in particular [`jq`](https://stedolan.github.io/jq/), [`yq`](https://github.com/mikefarah/yq) and [`curl`](https://curl.haxx.se/). You'll also need [`cf`](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html), the Cloud Foundry CLI. If you want to try out the CAP projects you'll need a Node.js installation of the SAP Cloud Application Programming Model - see the [CAP](https://cap.cloud.sap) for details.
+The scripts in this repo are Bash shell scripts. Therefore, to try these scripts out yourself, you'll need a Bash shell, which is available on macOS, Linux and Windows (with the Windows Subsystem for Linux). You will need some basic tools, in particular [`jq`](https://stedolan.github.io/jq/), [`yq`](https://github.com/mikefarah/yq) and [`curl`](https://curl.haxx.se/). You'll also need [`cf`](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html), the Cloud Foundry CLI. If you want to try out the CAP projects you'll need a Node.js installation of the SAP Cloud Application Programming Model - see the [CAP documentation](https://cap.cloud.sap) for details.
 
 ## Download and installation
 
