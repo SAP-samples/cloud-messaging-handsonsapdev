@@ -25,7 +25,6 @@ webhook_app="webhook"
 webhook_url="https://$(cf app "$webhook_app" | awk '/^routes:/ { print $2 }')"
 webhook_subscription="drain-$epoch"
 
-
 log Attaching webhook subscription to app "$webhook_app" for queue "$queue"
 ./messaging create_webhook_subscription "$webhook_subscription" "$queue" "$webhook_url"
 
