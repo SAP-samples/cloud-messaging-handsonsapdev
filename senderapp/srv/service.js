@@ -14,4 +14,11 @@ module.exports = async srv => {
 
   })
 
+  messaging.on('secondtopic', msg => {
+
+    console.log(`☞ ${JSON.stringify(msg)}`)
+
+  })
+
+
 }
