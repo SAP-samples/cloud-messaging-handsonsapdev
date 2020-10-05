@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -o errexit
+source ./localutils
+
+# Drain all messages in a given queue
+# - start the webhook endpoint
+# - create a webhook subscription to the queue
+# - wait for a short while
+# - delete webhook subscription
+# - (leave the webhook endpoint running)
+
+# MAIN ---------------------------------------------------------------------------
+
+queue=$1
+if [[ -z "$queue" ]]; then
+  echo Specify queue
+  exit 1
+fi
+
+# Names for temporary webhook subscription,
+# plus details of webhook app in the cloud.
+epoch=$(date "+%s")
+webhook_app="webhook"
+webhook_url="https://$(cf app "$webhook_app" | awk '/^routes:/ { print $2 }')"
+webhook_subscription="drain-$epoch"
+
+
+log Attaching webhook subscription to app "$webhook_app" for queue "$queue"
+./messaging create_webhook_subscription "$webhook_subscription" "$queue" "$webhook_url"
+
+sleep 10
+
+log Cleaning up - deleting webhook subscription "$webhook_subscription"
+./messaging delete_webhook_subscription "$webhook_subscription"
