@@ -4,7 +4,7 @@
 # what we did in Part 2 of the series, specifically here:
 # https://www.youtube.com/watch?v=Ct-uiu3RRZs&list=PL6RpkC85SLQCf--P9o7DtfjEcucimapUf&index=3&t=1990s
 
-instance=emdev
+source ./settings
 
 # Get the details of the service instance, pull out the dashboard URL
 # and then pass that URL to 'open'
