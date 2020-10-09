@@ -11,6 +11,11 @@ For the host and participants of the [Hands-on SAP Dev](https://www.youtube.com/
 
 The scripts in this repo are Bash shell scripts. Therefore, to try these scripts out yourself, you'll need a Bash shell, which is available on macOS, Linux and Windows (with the Windows Subsystem for Linux). You will need some basic tools, in particular [`jq`](https://stedolan.github.io/jq/), [`yq`](https://github.com/mikefarah/yq) and [`curl`](https://curl.haxx.se/). You'll also need [`cf`](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html), the Cloud Foundry CLI. If you want to try out the CAP projects you'll need a Node.js installation of the SAP Cloud Application Programming Model - see the [CAP documentation](https://cap.cloud.sap) for details.
 
+There are other tools used too:
+
+- NPM package [`url-decode-encode-cli`](https://www.npmjs.com/package/url-decode-encode-cli) for URL encoding topic names that contain e.g. slashes (install with `npm i -g url-decode-encode-cli`). [Now used](https://github.com/SAP-samples/cloud-messaging-handsonsapdev/commit/abd11d480b7719380ceaa6b92dfb642005643765) in the `management` and `messaging` scripts.
+
+
 ## Download and installation
 
 To enjoy these scripts, you don't have to download or install anything. But you can of course clone this repository to have the content available to you locally.
