@@ -130,6 +130,7 @@ publish_message_to_topic() {
     exit 1
   fi
   log "Publish message to topic $topic"
+  topic="$(echo -n "$topic" | url-encode)"
   _publish_message topics "$topic" "$message"
 }
 

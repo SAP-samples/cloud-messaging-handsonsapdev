@@ -84,6 +84,7 @@ function create_update_queue_subscription() {
     err Usage: create_update_queue_subscription queue topic
     exit 1
   fi
+  topic="$(echo -n "$topic" | url-encode)"
   curl \
     --$output \
     --header "Authorization: Bearer $token" \
@@ -99,6 +100,7 @@ function delete_queue_subscription() {
     err Usage: delete_queue_subscription queue topic
     exit 1
   fi
+  topic="$(echo -n "$topic" | url-encode)"
   curl \
     --$output \
     --header "Authorization: Bearer $token" \
