@@ -94,7 +94,8 @@ delete_webhook_subscription() {
     --"$output" \
     --header "Authorization: Bearer $token" \
     --request DELETE \
-    "$uri/$basepath/subscriptions/$name"
+    "$uri/$basepath/subscriptions/$name" \
+    | jq .
 }
 
 _publish_message() {
