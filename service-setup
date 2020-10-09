@@ -25,3 +25,6 @@ cf create-service "${service}" "${plan}" "${instance}" -c "${parameters}"
 
 # Create service key
 cf create-service-key "${instance}" "${servicekey}"
+
+# Invalidate any current service key file
+rm -f "sk-$instance-$servicekey.json"
