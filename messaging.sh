@@ -13,7 +13,7 @@ build_payload_webhook_subscription() {
   yq r -j - << EO_WEBHOOK_SUBSCRIPTION
 name: "$name"
 address: "queue:$queue"
-qos: "${qos:-0}"
+qos: ${qos:-0}
 pushConfig:
   type: webhook
   endpoint: "$endpoint"
