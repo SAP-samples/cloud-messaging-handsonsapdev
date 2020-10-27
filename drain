@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -o errexit
-source ./localutils
+source ./localutils.sh
 
 # Drain all messages in a given queue
 # - start the webhook endpoint
