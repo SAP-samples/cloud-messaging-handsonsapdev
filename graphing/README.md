@@ -2,7 +2,7 @@
 
 This directory holds content relating to the [Graphing SAP Enterprise Messaging Artifacts](https://www.youtube.com/playlist?list=PL6RpkC85SLQB9d462qCFLv2BW4o37ZaIC) Hands-on SAP Dev miniseries. The miniseries is about visualizing SAP Enterprise Messaging artifacts (topics, queues, webhooks and subscriptions) using Graphviz and a bit of shell scripting.
 
-## Tools
+## Tools
 
 Beyond what's been described already in the main [README](../README.md) file for this repository, here's a list of tools used in this miniseries:
 
