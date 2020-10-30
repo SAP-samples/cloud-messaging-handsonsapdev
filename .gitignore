@@ -2,5 +2,3 @@
 *.swp
 node_modules
 sk-*.json
-test.*
-temp/
