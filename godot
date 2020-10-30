@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+declare fontname="Victor Mono"
+declare fontsize="16"
+
+dot \
+  -Tpng \
+  -Nfontname="$fontname" \
+  -Nfontsize="$fontsize" \
+  -Gfontname="$fontname" \
+  test.dot > test.png

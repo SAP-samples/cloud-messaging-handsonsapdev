@@ -1,0 +1,35 @@
+digraph {
+    subgraph cluster_queues {
+        node [shape=folder];
+        label="Queues";
+        q1;
+        q2;
+        q3;
+    }
+
+    subgraph cluster_topics {
+        node [shape=doubleoctagon];
+        label="Topics";
+        "salesorder/created";
+        "topica";
+        "topicb";
+    }
+
+    subgraph cluster_webhooks {
+        node [shape=parallelogram];
+        label="Webhooks";
+        "whs1";
+        "whs2";
+    }
+
+    "q2" -> "topica";
+    "q2" -> "topicb";
+    "q2" -> "salesorder/created";
+    "q3" -> "salesorder/created";
+
+    "whs1" -> "q1";
+    "whs2" -> "q2";
+
+
+
+}
