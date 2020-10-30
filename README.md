@@ -7,6 +7,8 @@
 For the host and participants of the [Hands-on SAP Dev](https://www.youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0) live stream show to share discoveries & scripting efforts in the collective dive into messaging on SAP Cloud Platform - specifically in the
 [Diving into messaging on SAP Cloud Platform](https://www.youtube.com/playlist?list=PL6RpkC85SLQCf--P9o7DtfjEcucimapUf) series.
 
+**New (30 Oct 2020)** For the current [Graphing SAP Enterprise Messaging Artifacts](https://www.youtube.com/playlist?list=PL6RpkC85SLQB9d462qCFLv2BW4o37ZaIC) miniseries, there's a new [graphing](graphing/) subdirectory in this repo, with its own README with info on the tools, and all the resources we're creating together.
+
 ## Requirements
 
 The scripts in this repo are Bash shell scripts. Therefore, to try these scripts out yourself, you'll need a Bash shell, which is available on macOS, Linux and Windows (with the Windows Subsystem for Linux). You will need some basic tools, in particular [`jq`](https://stedolan.github.io/jq/), [`yq`](https://github.com/mikefarah/yq) and [`curl`](https://curl.haxx.se/). You'll also need [`cf`](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html), the Cloud Foundry CLI. If you want to try out the CAP projects you'll need a Node.js installation of the SAP Cloud Application Programming Model - see the [CAP documentation](https://cap.cloud.sap) for details.
