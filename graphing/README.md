@@ -22,7 +22,7 @@ We wrapped the call to `dot` in a shell script [godot](godot), for two reasons:
 - to be able to call it easily from the context of `entr`
 - to explore the various [node, edge and graph attributes](https://graphviz.org/doc/info/attrs.html) available to us, via `-N` and `-G` switches, initially.
 
-
+In [Part 2](https://www.youtube.com/watch?v=eP2bSC94mk8) we started to build a little script [`graph`](graph) to read and process the management API call results, taking the first steps towards building the content of the type of dot definition we need (as illustrated in [`test.dot`](test.dot). We started our first Awk script [`queues_topics.awk`](queues_topics.awk) and finished the live stream hour with an exciting cliffhanger - [a basic associative array is no good for the multi way queue/topic relationship](https://github.com/SAP-samples/cloud-messaging-handsonsapdev/issues/8). Dun-dun-duuuun! 
 
 
 
