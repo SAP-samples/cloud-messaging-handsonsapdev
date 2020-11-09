@@ -1,0 +1,29 @@
+[
+  {
+    "name": "q2",
+    "messageCount": 0,
+    "queueSizeInBytes": 0,
+    "unacknowledgedMessageCount": 0,
+    "maxQueueSizeInBytes": 0,
+    "maxQueueMessageCount": 0,
+    "respectTtl": null
+  },
+  {
+    "name": "q1",
+    "messageCount": 0,
+    "queueSizeInBytes": 0,
+    "unacknowledgedMessageCount": 0,
+    "maxQueueSizeInBytes": 0,
+    "maxQueueMessageCount": 0,
+    "respectTtl": null
+  },
+  {
+    "name": "q3",
+    "messageCount": 0,
+    "queueSizeInBytes": 0,
+    "unacknowledgedMessageCount": 0,
+    "maxQueueSizeInBytes": 0,
+    "maxQueueMessageCount": 0,
+    "respectTtl": null
+  }
+]

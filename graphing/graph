@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -o errexit
+
+declare queues
+queues=$(cd .. && ./management list_queues)
+#queues=$(cat temp/queues.json)
+
+for queue in $(jq -r '.[] .name' <<< "$queues" | sort); do
+  echo "$queue"
+  (cd .. && ./management list_queue_subscriptions "$queue") \
+    | jq -r '.[] | .queueName + " " + .topicPattern'
+
+done
+

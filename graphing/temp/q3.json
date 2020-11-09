@@ -1,0 +1,6 @@
+[
+  {
+    "queueName": "q3",
+    "topicPattern": "salesorder/created"
+  }
+]

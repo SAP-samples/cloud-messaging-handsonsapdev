@@ -1,0 +1,14 @@
+[
+  {
+    "queueName": "q2",
+    "topicPattern": "salesorder/created"
+  },
+  {
+    "queueName": "q2",
+    "topicPattern": "topica"
+  },
+  {
+    "queueName": "q2",
+    "topicPattern": "topicb"
+  }
+]
