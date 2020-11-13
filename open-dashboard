@@ -6,8 +6,17 @@
 
 source ./settings.sh
 
+function open_command() {
+    if [[ -z "$WSL_DISTRO_NAME" ]]; then
+        open "$1"
+    else
+        cmd.exe /C start "$1"
+    fi
+}
+
 # Get the details of the service instance, pull out the dashboard URL
-# and then pass that URL to 'open'
-cf service "${instance}" \
-  | awk '/^dashboard:/ { print $2 }' \
-  | xargs open
+dashboard_url=$(cf service "${instance}" \
+                   | awk '/^dashboard:/ { print $2 }')
+
+# Call open_command function with dashboard URL to open it
+open_command $dashboard_url
