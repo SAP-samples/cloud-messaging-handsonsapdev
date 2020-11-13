@@ -3,12 +3,11 @@
 set -o errexit
 
 declare queues
-queues=$(cd .. && ./management list_queues)
-#queues=$(cat temp/queues.json)
+queues=$(cd .. && cache ./management list_queues)
 
 for queue in $(jq -r '.[] .name' <<< "$queues" | sort); do
   echo "$queue"
-  (cd .. && ./management list_queue_subscriptions "$queue") \
+  (cd .. && cache ./management list_queue_subscriptions "$queue") \
     | jq -r '.[] | .queueName + " " + .topicPattern'
 
 done
