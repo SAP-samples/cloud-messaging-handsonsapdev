@@ -2,13 +2,32 @@
 
 set -o errexit
 
-declare queues
-queues=$(cd .. && cache ./management list_queues)
+get_queues_topics() {
+  declare queues
+  queues=$(cd .. && cache ./management list_queues)
 
-for queue in $(jq -r '.[] .name' <<< "$queues" | sort); do
-  echo "$queue"
-  (cd .. && cache ./management list_queue_subscriptions "$queue") \
-    | jq -r '.[] | .queueName + " " + .topicPattern'
+  for queue in $(jq -r '.[] .name' <<< "$queues" | sort); do
+    echo "$queue"
+    (cd .. && cache ./management list_queue_subscriptions "$queue") \
+      | jq -r '.[] | .queueName + " " + .topicPattern'
+  done
+}
 
-done
+get_webhooks() {
 
+  (cd .. && cache ./messaging list_webhook_subscriptions) \
+    | jq -r '.[] | .name + " " + .address|sub("queue:";"")'
+
+}
+
+main() {
+
+  echo "digraph {"
+  awk -f queues_topics.awk <(get_queues_topics)
+  echo
+  awk -f webhooks.awk <(get_webhooks)
+  echo "}"
+
+}
+
+main "$@"

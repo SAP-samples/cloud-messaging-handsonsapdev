@@ -7,5 +7,4 @@ dot \
   -Tpng \
   -Nfontname="$fontname" \
   -Nfontsize="$fontsize" \
-  -Gfontname="$fontname" \
-  test.dot > test.png
+  -Gfontname="$fontname"

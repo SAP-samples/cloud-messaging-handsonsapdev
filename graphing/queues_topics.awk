@@ -1,15 +1,32 @@
-NF==1 { queues[$1]=$1 }
-NF==2 { topics[$2]=$1 }
+{
+  queue=$1
+  topic=$2
+}
+
+NF==1 {
+  queues[queue]=queue
+}
+
+NF==2 {
+  topics[topic]=topic
+  subs[queue]=subs[queue] topic " "
+}
+
 END {
 
   print "subgraph cluster_queues {\n  node [shape=folder];\n  label=\"Queues\";"
-  for (q in queues)
-    print "  \"" q "\""
+  for (queue in queues) print "  \"" queue "\";"
+  print "}\n"
+  print "subgraph cluster_topics {\n  node [shape=doubleoctagon];\n  label=\"Queues\";"
+  for (topic in topics) print "  \"" topic "\";"
   print "}\n"
 
-  print "..."
+  for (queue in subs) {
+    split(subs[queue], ts)
+    for (topic in ts)
+      print "  \"" queue "\" -> \"" ts[topic] "\";"
 
-  for (t in topics)
-    print topics[t] " -> " t
+
+  }
 
 }
