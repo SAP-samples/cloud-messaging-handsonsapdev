@@ -17,7 +17,7 @@ END {
   print "subgraph cluster_queues {\n  node [shape=folder];\n  label=\"Queues\";"
   for (queue in queues) print "  \"" queue "\";"
   print "}\n"
-  print "subgraph cluster_topics {\n  node [shape=doubleoctagon];\n  label=\"Queues\";"
+  print "subgraph cluster_topics {\n  node [shape=doubleoctagon];\n  label=\"Topics\";"
   for (topic in topics) print "  \"" topic "\";"
   print "}\n"
 
