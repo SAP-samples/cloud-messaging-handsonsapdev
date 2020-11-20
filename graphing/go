@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Helper script to be used with entr, e.g.:
+# ls <somefile> | entr -c bash ./go
+
+./graph | ./godot | kitty icat --align=left --scale-up

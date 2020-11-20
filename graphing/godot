@@ -2,9 +2,19 @@
 
 declare fontname="Victor Mono"
 declare fontsize="16"
+declare bg="transparent"
+declare fg="ivory"
 
 dot \
   -Tpng \
   -Nfontname="$fontname" \
   -Nfontsize="$fontsize" \
-  -Gfontname="$fontname"
+  -Nfontcolor="$fg" \
+  -Ncolor="$fg" \
+  -Ecolor="$fg" \
+  -Gfontname="$fontname" \
+  -Gfontcolor="$fg" \
+  -Gcolor="$fg" \
+  -Gbgcolor="$bg"
+
+
