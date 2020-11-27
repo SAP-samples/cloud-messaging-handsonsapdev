@@ -5,7 +5,7 @@ set -o errexit
 # Set up messaging service instance and service key
 # Sort of idempotent - can rerun if required.
 
-source ./settings
+source ./settings.sh # configuration
 
 parameters=$(
   yq r -j - << EO_PARAMETERS
