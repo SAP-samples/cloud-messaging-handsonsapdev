@@ -15,11 +15,11 @@ The scripts in this repo are Bash shell scripts. Therefore, to try these scripts
 
 ### Using the SAP Business Application Studio
 
-Of course, there's also a Bash shell in the SAP Business Application Studio (App Studio), which is wonderful. If you want to use that, there's a little script that you can use to set things up. Currently it will install `yq` and `jq` into a user-local executable directory (`bin` in your home directory).
+Of course, there's also a Bash shell in the SAP Business Application Studio (App Studio), which is wonderful. If you want to use that, there's a little script [`bas-setup`](bas-setup) that you can use to set things up. Currently it will install `yq` and `jq` into a user-local executable directory (`bin` in your home directory).
 
 Once you've got an App Studio dev space set up and running, clone this repository (use the 'Clone from git' link in the Welcome page and use this url `https://github.com/SAP-samples/cloud-messaging-handsonsapdev.git`), open a terminal, and run the script:
 
-```sh
+```
 user: user $ ./projects/cloud-messaging-handsonsapdev/bas-setup
 Installing yq ...
 Installing jq ...
