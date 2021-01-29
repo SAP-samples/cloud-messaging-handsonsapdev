@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -o errexit
-source ./localutils
+source ./localutils.sh
 
 # Listen to given topic
 # - create temporary queue
@@ -30,6 +30,11 @@ cleanup() {
 
 # MAIN ---------------------------------------------------------------------------
 
+if [ "$#" -ne 2 ]; then
+    echo "Usage: listen <topic> <webhook app name>"
+    exit 1
+fi
+
 topic=$1
 if [[ -z "$topic" ]]; then
   echo Specify topic
@@ -40,7 +45,7 @@ fi
 # plus details of webhook app in the cloud.
 epoch=$(date "+%s")
 queue="queue-$epoch"
-webhook_app="webhook"
+webhook_app=$2
 webhook_url="https://$(cf app "$webhook_app" | awk '/^routes:/ { print $2 }')"
 webhook_subscription="whs-$epoch"
 
