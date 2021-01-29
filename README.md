@@ -15,7 +15,7 @@ The scripts in this repo are Bash shell scripts. Therefore, to try these scripts
 
 ### Using the SAP Business Application Studio
 
-Of course, there's also a Bash shell in the SAP Business Application Studio (App Studio), which is wonderful. If you want to use that, there's a little script [`bas-setup`](bas-setup) that you can use to set things up. Currently it will install `yq` and `jq` into a user-local executable directory (`bin` in your home directory).
+Of course, there's also a Bash shell in the SAP Business Application Studio (App Studio), which is wonderful. If you want to use that, there's a little script [`appstudiosetup`](appstudiosetup) that you can use to set things up. Currently it will install `yq` and `jq` into a user-local executable directory (`bin` in your home directory), and also URL encoding utilities (from NPM package [`url-decode-encode-cli`](https://www.npmjs.com/package/url-decode-encode-cli)); `url-encode` in particular is [used](https://github.com/SAP-samples/cloud-messaging-handsonsapdev/commit/abd11d480b7719380ceaa6b92dfb642005643765) in the `management` and `messaging` scripts.
 
 Once you've got an App Studio dev space set up and running, clone this repository (use the 'Clone from git' link in the Welcome page and use this url `https://github.com/SAP-samples/cloud-messaging-handsonsapdev.git`), open a terminal, and run the script:
 
@@ -23,18 +23,14 @@ Once you've got an App Studio dev space set up and running, clone this repositor
 user: user $ ./projects/cloud-messaging-handsonsapdev/bas-setup
 Installing yq ...
 Installing jq ...
+...
++ url-decode-encode-cli@0.1.1
+updated 1 package in 0.156s
 Please now restart the terminal (Ctrl-D then Ctrl-`) to have the new shell settings take effect ...
 user: user $
 ```
 
 Follow the instructions and start a new terminal, and you're all set.
-
-
-
-There are other tools used too:
-
-- NPM package [`url-decode-encode-cli`](https://www.npmjs.com/package/url-decode-encode-cli) for URL encoding topic names that contain e.g. slashes (install with `npm i -g url-decode-encode-cli`). [Now used](https://github.com/SAP-samples/cloud-messaging-handsonsapdev/commit/abd11d480b7719380ceaa6b92dfb642005643765) in the `management` and `messaging` scripts.
-
 
 ## Download and installation
 
