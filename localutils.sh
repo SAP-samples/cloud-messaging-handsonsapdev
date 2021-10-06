@@ -48,7 +48,7 @@ gettoken() {
 
 # For a given service instance, returns the information
 # in a service key, specified by name. Basic cacheing
-# in that key data is regenerated from the cloud platform
+# in that key data is regenerated from the cloud 
 # and cached for N mins in a local file.
 getservicekey() {
   local instance=${1}
