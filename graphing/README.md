@@ -14,7 +14,7 @@ Beyond what's been described already in the main [README](../README.md) file for
 
 ## Progress
 
-In [Part 1](https://www.youtube.com/watch?v=E9Ha0tnXGS4) we manually created the [test.dot](test.dot) file contents (starting out from one of the [examples](https://graphs.grevian.org/)), intending to work out how to represent the artifacts in the instance of our Enterprise Messaging service running on SAP Cloud Platform. Using the Graphviz `dot` utility we generated a PNG representation of the graph in [test.png](test.png):
+In [Part 1](https://www.youtube.com/watch?v=E9Ha0tnXGS4) we manually created the [test.dot](test.dot) file contents (starting out from one of the [examples](https://graphs.grevian.org/)), intending to work out how to represent the artifacts in the instance of our Enterprise Messaging service running on SAP Business Technology Platform. Using the Graphviz `dot` utility we generated a PNG representation of the graph in [test.png](test.png):
 
 ![the artifacts, visualized, in a PNG representation of the graph described in the dot language file](test.png)
 
