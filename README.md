@@ -4,7 +4,7 @@
 
 ## Description
 
-For the host and participants of the [Hands-on SAP Dev](https://www.youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0) live stream show to share discoveries & scripting efforts in the collective dive into messaging on SAP Cloud Platform - specifically in the
+For the host and participants of the [Hands-on SAP Dev](https://www.youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0) live stream show to share discoveries & scripting efforts in the collective dive into messaging on SAP Business Technology Platform - specifically in the
 [Diving into messaging on SAP Business Technology Platform](https://www.youtube.com/playlist?list=PL6RpkC85SLQCf--P9o7DtfjEcucimapUf) series.
 
 **New (30 Oct 2020)** For the current [Graphing SAP Enterprise Messaging Artifacts](https://www.youtube.com/playlist?list=PL6RpkC85SLQB9d462qCFLv2BW4o37ZaIC) miniseries, there's a new [graphing](graphing/) subdirectory in this repo, with its own README with info on the tools, and all the resources we're creating together.
@@ -39,7 +39,7 @@ To enjoy these scripts, you don't have to download or install anything. But you 
 ## Support
 
 Support for the content in this repository is available during the [Hands-on SAP Dev](https://www.youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0) live stream episodes, specifically in the
-[Diving into messaging on SAP Cloud Platform](https://www.youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0) series. Otherwise, this content is provided "as-is" with no other support.
+[Diving into messaging on SAP Business Technology Platform](https://www.youtube.com/playlist?list=PL6RpkC85SLQCf--P9o7DtfjEcucimapUf) series. Otherwise, this content is provided "as-is" with no other support.
 
 ## Contributing
 
