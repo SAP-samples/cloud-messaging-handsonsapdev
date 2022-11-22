@@ -5,5 +5,5 @@
 # shellcheck disable=SC2034
 service=enterprise-messaging
 plan=dev
-instance=emdev
+instance=enterprise-messaging-dev
 servicekey=sk1
