@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC1090
+
+# Source each of the completion scripts available. Also adds current dir to PATH.
+# Run this script like this:
+# . completers
+
+main() {
+
+  local script
+  while read -r script; do
+    source "$script"
+  done < <(find . -type f -name '*.completion')
+
+  export PATH=.:$PATH
+
+}
+
+main "$@"
