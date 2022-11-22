@@ -2,6 +2,7 @@
 
 # Management API functions
 
+declare output token uri
 basepath=hub/rest/api/v1/management/messaging
 
 function create_update_queue() {

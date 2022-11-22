@@ -2,6 +2,7 @@
 
 # Messaging API functions
 
+declare output token uri
 basepath=messagingrest/v1
 
 # Payload builders ----------------------------------------------------------
