@@ -11,7 +11,7 @@ build_payload_webhook_subscription() {
   local name=$1
   local queue=$2
   local endpoint=$3
-  yq e -j - << EO_WEBHOOK_SUBSCRIPTION
+  yq eval -o json - << EO_WEBHOOK_SUBSCRIPTION
 name: "$name"
 address: "queue:$queue"
 qos: ${qos:-0}
