@@ -27,9 +27,7 @@ app.get('/*', (req, res) => {
 // Also accept POST requests to any path, and log out
 // what the path was, and also the JSON body if any.
 app.post('/*', (req, res) => {
-  console.log('☞', req.headers)
-  console.log('☞', req.path)
-  console.log('☞', req.body)
+  console.log(`☞ at ${req.path} got ${req.body}`)
   res.status(200).end()
 })
 
