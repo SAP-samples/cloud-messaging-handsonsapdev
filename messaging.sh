@@ -24,7 +24,7 @@ EO_WEBHOOK_SUBSCRIPTION
 
 build_payload_webhook_subscription_state() {
   local state=$1
-  yq e -j - << EO_WEBHOOK_SUBSCRIPTION_STATE
+  yq eval -o json - << EO_WEBHOOK_SUBSCRIPTION_STATE
 action: "$state"
 EO_WEBHOOK_SUBSCRIPTION_STATE
 }
