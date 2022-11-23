@@ -3,7 +3,7 @@
 set -o errexit
 source ./localutils.sh
 
-# Listen to given topic
+# Listen to given topic:
 # - create temporary queue
 # - subscribe queue to the given topic
 # - start the webhook endpoint
@@ -14,6 +14,9 @@ source ./localutils.sh
 # - delete webhook subscription
 # - delete queue (which will delete the queue subscription)
 # - (leave the webhook endpoint running)
+
+# Usage:
+# listen <topic> <webhook app name>
 
 # Functions ----------------------------------------------------------------------
 
