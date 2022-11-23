@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+delete_whs() {
+
+  while read -r whs; do
+    echo "Webhook subscription '$whs'"
+    messaging delete_webhook_subscription "$whs"
+  done < <(messaging list_webhook_subscriptions | jq -r '.[].name')
+
+}
+
+delete_qs_and_q() {
+
+  while read -r q; do
+    echo "Queue '$q'"
+    while read -r queueName topicPattern; do
+      echo "Queue '$queueName' subscription to '$topicPattern'"
+      management delete_queue_subscription "$queueName" "$topicPattern"
+    done < <(management list_queue_subscriptions "$q" | jq -r '.[]|"\(.queueName) \(.topicPattern)"')
+    management delete_queue "$q"
+  done < <(management list_queues | jq -r '.[].name')
+
+}
+
+main() {
+
+  . setup
+  delete_whs
+  delete_qs_and_q
+
+}
+
+main "$@"
