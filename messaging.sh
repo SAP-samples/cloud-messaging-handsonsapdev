@@ -191,6 +191,7 @@ consume_message_from_queue() {
     --header "x-qos: $qos" \
     --request POST \
     "$uri/$basepath/queues/$name/messages/consumption"
+  echo
 }
 
 acknowledge_message_consumption() {
