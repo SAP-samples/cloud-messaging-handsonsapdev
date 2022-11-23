@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Gets the route for a given CF app.
+# Very naive, assumes one route.
+
+# Usage:
+# getapproute <appname>
+
+set -euo pipefail
+
+getroute() {
+
+  local appname="${1:?Specify appname}"
+  cf app "$appname" \
+    | awk '/^routes:/ { print $2 }'
+
+}
+
+main() {
+
+  echo "https://$(getroute "$1")/"
+
+}
+
+main "$@"
