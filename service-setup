@@ -8,7 +8,7 @@ set -o errexit
 source ./settings.sh # configuration
 
 parameters=$(
-  yq e -j - << EO_PARAMETERS
+  yq eval -o json - << EO_PARAMETERS
 emname: "${instance}"
 options:
   management: true
