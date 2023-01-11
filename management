@@ -28,7 +28,7 @@ main() {
 
       # Retrieve service key and parse out relevant sections
       sk=$(getservicekey "$instance" "$servicekey")
-      management=$(getval "$sk" .management[0])
+      management=$(getval "$sk" "(.credentials//.).management[0]")
 
       # Determine API call details for MANAGEMENT incl OAuth 2.0 token
       uri=$(getval "$management" .uri)

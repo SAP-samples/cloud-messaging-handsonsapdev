@@ -33,7 +33,7 @@ main() {
 
       # Retrieve service key and parse out relevant sections.
       sk=$(getservicekey "$instance" "$servicekey")
-      messaging=$(getval "$sk" .messaging)
+      messaging=$(getval "$sk" "(.credentials//.).messaging")
       httprest=$(getval "$messaging" '.[] | select(.broker.type == "saprestmgw")')
 
       # Determine API call details for MESSAGING-HTTPREST incl OAuth 2.0 token
