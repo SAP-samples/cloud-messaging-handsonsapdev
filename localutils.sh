@@ -25,6 +25,8 @@ gettoken() {
   #   "granttype": "...",
   #   "tokenendpoint": "..."
   # }
+  #
+  # Note that this will create / overwrite a file called token.json.
   local stanza=${1}
   local clientid clientsecret granttype tokenendpoint
 
@@ -35,15 +37,12 @@ gettoken() {
 
   # This is basically assuming the use of the OAuth 2.0
   # Client Credentials grant type.
-  token=$(
-    curl \
-      --"${output}" \
-      --user "${clientid}:${clientsecret}" \
-      --data "grant_type=${granttype}" \
-      "${tokenendpoint}" \
-      | jq -r '.access_token'
-  )
-  echo "${token}"
+  curl \
+    --"${output}" \
+    --user "${clientid}:${clientsecret}" \
+    --data "grant_type=${granttype}" \
+    --url "${tokenendpoint}" \
+    | tee token.json > >(jq -r '.access_token')
 }
 
 # For a given service instance, returns the information
